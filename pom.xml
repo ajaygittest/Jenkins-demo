@@ -44,7 +44,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>rest-demo</finalName>
+		<finalName>cicd-demo</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
