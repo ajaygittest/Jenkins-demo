@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+    DOCKER_IMAGE = "cicd-demo"
+    K8S_DEPLOYMENT = "k8s-deployment.yaml"
+}
 
     tools {
         jdk 'JDK17'
