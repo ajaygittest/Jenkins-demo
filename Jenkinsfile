@@ -33,5 +33,20 @@ pipeline {
         bat 'docker run -d -p 8081:8080 --name cicd-demo cicd-demo'
     }
 }
+ stage('Deploy to Kubernetes') {
+            steps {
+                bat 'kubectl apply -f %K8S_DEPLOYMENT%'
+                bat 'kubectl rollout status deployment/springboot-deployment'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "CI/CD Pipeline Finished ✅ App deployed to Kubernetes"
+        }
+        failure {
+            echo "Pipeline Failed ❌ Check logs"
+        }
     }
 }
