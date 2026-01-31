@@ -19,5 +19,19 @@ pipeline {
                 bat 'mvn clean package -DskipTests'
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t cicd-demo .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                bat 'docker stop cicd-demo || echo "No existing container"'
+                bat 'docker rm cicd-demo || echo "No existing container"'
+                bat 'docker run -d -p 8081:8080 --name cicd-demo cicd-demo'
+            }
+        }
     }
 }
