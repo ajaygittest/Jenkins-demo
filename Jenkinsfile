@@ -27,11 +27,11 @@ pipeline {
         }
 
         stage('Run Docker Container') {
-            steps {
-                bat 'docker stop cicd-demo || echo "No existing container"'
-                bat 'docker rm cicd-demo || echo "No existing container"'
-                bat 'docker run -d -p 8081:8080 --name cicd-demo cicd-demo'
-            }
-        }
+    steps {
+        bat 'docker stop cicd-demo || exit 0'
+        bat 'docker rm cicd-demo || exit 0'
+        bat 'docker run -d -p 8081:8080 --name cicd-demo cicd-demo'
+    }
+}
     }
 }
